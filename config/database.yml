@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: scoopme
+  username: 'ubuntu'
+  pool: 5
+  host: 'localhost'
+  password: "password"
+  template: template0

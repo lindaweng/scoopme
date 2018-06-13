@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--https://scoopme-lindaweng.c9users.io/-->
+<!--<p></p> paragraph-->
+<!--<h1></h1> biggest-->
+<!--<h6></h6> smallest-->
+<!--<a></a> hyperlink-->
+<!--<div></div> boxes-->
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Driver Homepage</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/creative.min.css" rel="stylesheet">
+    <link href="../css/style1.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">ScoopMe</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+          <!--  <li class="nav-item">-->
+          <!--    <a class="nav-link js-scroll-trigger" href="/">Home</a>-->
+          <!--  </li>-->
+         <div class="dropdown" id="infoDrop">
+          	<button class="dropbtn"><%=@name%></button>
+          		<div class="dropdown-content">
+          			<a href="/driverAccount/<%=@id%>">My Account</a>
+          			<a href="/">Log Out</a>
+          		</div>
+          </div>
+            <!--<li class="nav-item">-->
+            <!--  <a class="nav-link js-scroll-trigger" href="#services">Services</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+            <!--  <a class="nav-link js-scroll-trigger" href="#Register">Portfolio</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+            <!--  <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>-->
+            <!--</li>-->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--<header class="masthead text-center text-white d-flex">-->
+    <!--  <div class="container my-auto">-->
+    <!--    <div class="row">-->
+    <!--      <div class="col-lg-10 mx-auto">-->
+    <!--        <h1 class="text-uppercase">-->
+    <!--          <strong>Driver Account</strong>-->
+    <!--        </h1>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</header>-->
+    
+    <section class="bg-primary" style="background: #1AFBB4 !important; height: -webkit-fill-available">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Driver Home</h2>
+          </div>
+          <div class="col-lg-8 mx-auto text-left">
+            <%if @riders.empty? == false%>
+                <h4>Your Current Riders: </h4>
+                
+                <%@riders.each do |rider|%>
+                  <%if rider.split("~")[1] != ""%>
+                    <%id = rider.split("~")[0]%>
+                    <%@rider = Rider.find(id)%>
+                    <h4>Name: <%=@rider.name%></h4>
+                    <h4>Age: <%=@rider.age%></h4>
+                    <h4>Email: <%=@rider.email%></h4>
+                    <h4>Phone Number: <%=@rider.phone%></h4>
+                    <%if rider.split("~")[1] != "true"%>
+                      <form method="POST" action="/selectRider">
+                        <input type="hidden" name="driverId" value="<%=@id%>">
+                        <input type="hidden" name="riderId" value="<%=id%>">
+                        <input type="submit" value="Accept">
+                      </form>
+                      <form method="POST" action="/noRider">
+                        <input type="hidden" name="driverId" value="<%=@id%>">
+                        <input type="hidden" name="riderId" value="<%=id%>">
+                        <input type="submit" value="Decline">
+                      </form>
+                    <%end%>
+                    <br>
+                  <%end%>
+                <%end%>
+            <%end%>
+              <!-- <form method="POST" action="/noRider">-->
+              <!--  <input type="hidden" name="driverId" value="<%=@id%>">-->
+              <!--  <input type="submit" value="Accept All">-->
+              <!--</form>-->
+              <!-- <form method="POST" action="/noRider">-->
+              <!--  <input type="hidden" name="driverId" value="<%=@id%>">-->
+              <!--  <input type="submit" value="Decline All">-->
+              <!--</form>-->
+                
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+      <div class="footer">
+        <p>&copy; SCOOPME 2018 </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="../js/creative.min.js"></script>
+
+  </body>
+
+</html>
