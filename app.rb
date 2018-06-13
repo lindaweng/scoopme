@@ -7,6 +7,7 @@
 # Dark Green: 339E4C
 # Dark Blue: 005ADE
 # Green: 2EEE46
+# Yellow : FFEB04
 # Blue: 54E1FF
 # Blue-Green: 1AFBB4
 # https://developers.google.com/maps/documentation/geocoding/intro#GeocodingRequests
