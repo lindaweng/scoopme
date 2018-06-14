@@ -73,10 +73,12 @@ class MyApp < Sinatra::Base
         @driversAcc = Driver.all
         @driverAddresses = []
         @driversAcc.each do |driver|
-            @driverArr = []
-            @driverArr.push(driver.name)
-            @driverArr.push(driver.address)
-            @driverAddresses.push(@driverArr)
+            if (driver.school.downcase() == @rider.school.downcase())
+                @driverArr = []
+                @driverArr.push(driver.name)
+                @driverArr.push(driver.address)
+                @driverAddresses.push(@driverArr)
+            end
         end
         erb :riderHome
     end
@@ -144,10 +146,12 @@ class MyApp < Sinatra::Base
         @driversAcc = Driver.all
         @driverAddresses = []
         @driversAcc.each do |driver|
-            @driverArr = []
-            @driverArr.push(driver.name)
-            @driverArr.push(driver.address)
-            @driverAddresses.push(@driverArr)
+            if (driver.school.downcase() == @rider.school.downcase())
+                @driverArr = []
+                @driverArr.push(driver.name)
+                @driverArr.push(driver.address)
+                @driverAddresses.push(@driverArr)
+            end
         end
         erb :riderHome
     end
@@ -195,10 +199,12 @@ class MyApp < Sinatra::Base
             @driversAcc = Driver.all
             @driverAddresses = []
             @driversAcc.each do |driver|
-                @driverArr = []
-                @driverArr.push(driver.name)
-                @driverArr.push(driver.address)
-                @driverAddresses.push(@driverArr)
+                if (driver.school.downcase() == @rider.school.downcase())
+                    @driverArr = []
+                    @driverArr.push(driver.name)
+                    @driverArr.push(driver.address)
+                    @driverAddresses.push(@driverArr)
+                end
             end
             erb :riderHome
         end
@@ -217,11 +223,12 @@ class MyApp < Sinatra::Base
         @driversAcc = Driver.all
         @driverAddresses = []
         @driversAcc.each do |driver|
-            @driverArr = []
-            @driverArr.push(driver.name)
-            @driverArr.push(driver.address)
-            @driverAddresses.push(@driverArr)
-            puts @driverAddresses
+            if (driver.school.downcase() == @rider.school.downcase())
+                @driverArr = []
+                @driverArr.push(driver.name)
+                @driverArr.push(driver.address)
+                @driverAddresses.push(@driverArr)
+            end
         end
         @id = @rider.id
         redirect "/riderHome/#{@id}"
@@ -243,11 +250,12 @@ class MyApp < Sinatra::Base
         @driverAddresses = []
         @driverArr = []
         @driversAcc.each do |driver|
-            @driverArr = []
-            @driverArr.push(driver.name)
-            @driverArr.push(driver.address)
-            @driverAddresses.push(@driverArr)
-            puts @driverAddresses
+            if (driver.school.downcase() == @rider.school.downcase())
+                @driverArr = []
+                @driverArr.push(driver.name)
+                @driverArr.push(driver.address)
+                @driverAddresses.push(@driverArr)
+            end
         end
         @id = @rider.id
         redirect "/riderHome/#{@id}"

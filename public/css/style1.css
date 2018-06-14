@@ -51,11 +51,23 @@ color:#212529;
   color: #2EEE46 !important;
   background-color: transparent;
 }
+
+
+@media (min-width: 992px) {
+  #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
+  #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+    color: #2EEE46 !important;
+  }
+}
   
 #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
 color: #212529;
 }
 
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+    color: #fff;
+    background-color: #005ADE!important;
+}
 
 
 footer {
@@ -80,4 +92,10 @@ hr {
 	border-color: #2EEE46 !important;
 }
 
+input {
+  font-family: 'Josefin Sans';
+}
 
+textarea {
+  font-family: 'Josefin Sans';
+}

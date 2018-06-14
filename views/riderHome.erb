@@ -15,6 +15,8 @@
     <meta name="author" content="">
 
     <title>Rider Homepage</title>
+    <link rel="shortcut icon" href="img/car-logo.ico" length = 16px width = 16px>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +31,7 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/creative.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style1.css" rel="stylesheet">
     
     <!--<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
 
@@ -40,7 +42,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top" style= "color: #005ADE">ScoopMe</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" style= "color: #005ADE; font-family: 'Comfortaa'">ScoopMe</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,21 +52,12 @@
             <!--  <a class="nav-link js-scroll-trigger" href="/">Home</a>-->
             <!--</li>-->
             <div class="dropdown" id="infoDrop">
-          	<button class="dropbtn"><%=@rider.name%></button>
+          	<button class="dropbtn" style = "font-family: 'Josefin Sans'"><%=@rider.name%></button>
           		<div class="dropdown-content">
-          			<a href="/riderAccount/<%=@id%>">My Account</a>
-          			<a href="/">Log Out</a>
+          			<a href="/riderAccount/<%=@id%>" style = "font-family: 'Josefin Sans'">My Account</a>
+          			<a href="/" style = "font-family: 'Josefin Sans'">Log Out</a>
           		</div>
           </div>
-            <!--<li class="nav-item">-->
-            <!--  <a class="nav-link js-scroll-trigger" href="#services">Services</a>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-            <!--  <a class="nav-link js-scroll-trigger" href="#Register">Portfolio</a>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-            <!--  <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>-->
-            <!--</li>-->
           </ul>
         </div>
       </div>
@@ -74,23 +67,23 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading text-white">ScoopMe</h2>
+            <h2 class="section-heading text-white" style = "font-family: 'Comfortaa'">ScoopMe</h2>
           </div>
           <div class="col-lg-8 mx-auto text-left"
             <%if @drivers.empty? == false%>
-                <h4>Your Current Drivers:</h4>
+                <h2 style = "font-family: 'Comfortaa'">Your Current Drivers:</h2>
                 <%@drivers.each do |driver|%>
                   <%id = driver.split("~")[0]%>
                   <%@driver = Driver.find(id)%>
-                  <h4>Name: <%=@driver.name%></h4>
-                  <h4>Age: <%=@driver.age%></h4>
-                  <h4>Address: <%=@driver.address%></h4>
-                  <h4>Email: <%=@driver.email%></h4>
-                  <h4>Phone Number: <%=@driver.phone%></h4>
+                  <h4 style = "font-family: 'Josefin Sans'">Name: <%=@driver.name%></h4>
+                  <h4 style = "font-family: 'Josefin Sans'">Age: <%=@driver.age%></h4>
+                  <h4 style = "font-family: 'Josefin Sans'">Address: <%=@driver.address%></h4>
+                  <h4 style = "font-family: 'Josefin Sans'">Email: <%=@driver.email%></h4>
+                  <h4 style = "font-family: 'Josefin Sans'">Phone Number: <%=@driver.phone%></h4>
                   <%if driver.split("~")[1] == "false"%>
-                    <h4 class = "font-weight-bold" >This driver is currently not available.</h4>
+                    <h5 class = "font-weight-bold" style = "font-family: 'Josefin Sans'">This driver is currently not available.</h5>
                   <%elsif driver.split("~")[1] == "true"%>
-                    <h5 class = "font-weight-bold" >This driver has confirmed that they can drive you. Please contact them to give them your address.</h5>
+                    <h5 class = "font-weight-bold" style = "font-family: 'Josefin Sans'">This driver has confirmed that they can drive you. Please contact them to give them your address.</h5>
                   <%end%>
                   <br>
                 <%end%>
@@ -114,17 +107,29 @@
         } else { 
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
+        
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
           center: {lat: -34.397, lng: 150.644}
         });
+        
         var geocoder = new google.maps.Geocoder();
-
-        // addEventListener('click', function() {
-        //   geocodeAddress(geocoder, map);
+        
+        // geocoder.geocode( {'high_school': }, function(results, status) {
+        //   if (status === 'OK') {
+        //     map.setCenter(results[0].geometry.location);
+        //     // var marker = new google.maps.Marker({
+        //     //   map: map,
+        //     //   position: results[0].geometry.location
+        //     // });
+        //   } else {
+        //     alert('Geocode was not successful for the following reason: ' + status);
+        //   }
         // });
         
-        // function geocodeAddress(geocoder, resultsMap) {
+        
+
+        
           var marker, i;
           infowindow = new google.maps.InfoWindow({content: "loading content..."});
 
@@ -156,32 +161,34 @@
     </script>
           <%@drivers = Driver.all%>
           <%@drivers.each do |driver|%>
-            <div class="col-lg-8 mx-auto">
-            <div class="col-lg-8 mx-auto" style="display: inline-block">
-             <font color = "white"> <h3 style="display: inline-block">Name: <%=driver.name%></h3></font>
-              <font color = "white"><h3 style="display: inline-block; padding-left: 2em">Age: <%=driver.age%></h3></font>
-              <br>
-              <font color = "white"><h3 style="display: inline-block">Address: <%=driver.address%></h3></font>
-              <font color = "white"><h3 style="display: inline-block">Email: <%=driver.email%></h3></font>
-              <font color = "white"><h3 style="display: inline-block">Phone Number: <%=driver.phone%></h3></font>
-              
-            </div>
-            <div class="col-lg-8" style="display: inline-block; max-width: 30%">
-              <br>
-              
-              <form method="POST" action="/chooseDriver">
-                <input type="hidden" name="riderId" value="<%=@id%>">
-                <input type="hidden" name="driverId" value="<%=driver.id%>">
-                <input type="submit" value="Choose">
-              </form>
-              <form method="POST" action="/unchooseDriver">
-                <input type="hidden" name="riderId" value="<%=@id%>">
-                <input type="hidden" name="driverId" value="<%=driver.id%>">
-                <input type="submit" value="Unchoose">
-               <font color = "white"> <p>You can only Unchoose drivers that have not responded to your request.</p></font>
-              </form>
-            </div>
-            </div>
+            <%if driver.school == @rider.school%>
+              <div class="col-lg-8 mx-auto">
+              <div class="col-lg-8 mx-auto" style="display: inline-block">
+                <font color = "white"> <h3 style="display: inline-block; font-family: 'Josefin Sans'">Name: <%=driver.name%></h3></font>
+                <font color = "white"><h3 style="display: inline-block; padding-left: 2em; font-family: 'Josefin Sans'">Age: <%=driver.age%></h3></font>
+                <br>
+                <font color = "white"><h3 style="display: inline-block; font-family: 'Josefin Sans'">Address: <%=driver.address%></h3></font>
+                <font color = "white"><h3 style="display: inline-block; font-family: 'Josefin Sans'">Email: <%=driver.email%></h3></font>
+                <font color = "white"><h3 style="display: inline-block; font-family: 'Josefin Sans'">Phone Number: <%=driver.phone%></h3></font>
+                
+              </div>
+              <div class="col-lg-8" style="display: inline-block; max-width: 30%">
+                <br>
+                
+                <form method="POST" action="/chooseDriver">
+                  <input type="hidden" name="riderId" value="<%=@id%>">
+                  <input type="hidden" name="driverId" value="<%=driver.id%>">
+                  <input type="submit" value="Choose">
+                </form>
+                <form method="POST" action="/unchooseDriver">
+                  <input type="hidden" name="riderId" value="<%=@id%>">
+                  <input type="hidden" name="driverId" value="<%=driver.id%>">
+                  <input type="submit" value="Unchoose">
+                 <font color = "white"> <p style = "font-family: 'Josefin Sans'">You can only Unchoose drivers that have not responded to your request.</p></font>
+                </form>
+              </div>
+              </div>
+            <%end%>
             <br>
           <%end%>
         </div>
